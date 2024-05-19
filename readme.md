@@ -28,7 +28,3 @@ Las secuencias de escape en C# son combinaciones de caracteres que comienzan con
 El carácter `@` antes de una cadena de texto en C# se utiliza para crear **cadenas literales**. Esto significa que las secuencias de escape no se procesan y se tratan como texto normal. Por ejemplo, `@"\\n"` se interpretará como la cadena de dos caracteres `\` y `n`, en lugar de una nueva línea.
 
 El carácter `$` antes de una cadena de texto en C# se utiliza para crear **cadenas interpoladas**. Esto permite insertar expresiones dentro de las cadenas que se evaluarán y se convertirán en texto. Por ejemplo, `$"Hola, {nombre}"` reemplazará `{nombre}` con el valor de la variable `nombre`.
-
----
-
-Espero que esto te sea de ayuda. Si tienes más preguntas, no dudes en preguntar. ¡Estoy aquí para ayudarte! 😊
