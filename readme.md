@@ -1,4 +1,4 @@
-####Preguntas y Respuestas
+#####Preguntas y Respuestas
 ¿String es un tipo por valor o un tipo por referencia?
 En C#, string es un tipo por referencia. Sin embargo, debido a su inmutabilidad (es decir, no puedes cambiar el valor de una cadena una vez creada), a menudo se comporta como un tipo por valor. Cuando modificas una cadena, en realidad estás creando una nueva cadena y cambiando la referencia.
 
