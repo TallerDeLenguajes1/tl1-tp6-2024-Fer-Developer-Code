@@ -43,91 +43,111 @@ do
 Console.WriteLine("Num 1 ahora: " + num1);
 Console.WriteLine("Num 2 ahora: " + num2);
 
-//Iniciando punto CalculadoraV1
-int opcion;
-int seguirOperando;
-int numCalc1;
-int numCalc2;
-int resultado;
-string lineaCalc;
+
+//Iniciando punto CalculadoraV2
+
+int seguirOperando = 0;
 do
 {
-    Console.WriteLine("Que tipo de operación desea realizar?\n1.Sumar\n2.Restar\n3.Multiplicar\n4.Dividir\n5.Terminar\n");
-    lineaCalc = Console.ReadLine();
+    Console.WriteLine("Que tipo de operación desea realizar?\n1.Sumar\n2.Restar\n3.Multiplicar\n4.Dividir\n5.Valor absoluto\n6.Cuadrado\n7.Raíz cuadrada\n8.Seno\n9.Coseno\n10.Parte entera\n11.Máximo\n12.Mínimo\n13.Terminar\n");
+    string lineaCalc = Console.ReadLine();
+    int opcion;
+
     if (int.TryParse(lineaCalc, out opcion))
     {
-        if (opcion >= 1 && opcion <= 4)
+        double numCalc1 = 0;
+        double numCalc2 = 0;
+        double resultado = 0;
+
+        if (opcion >= 1 && opcion <= 12)
         {
-            switch (opcion)
-            {
-                case 1:
-                    Console.WriteLine("Inserte el primer numero a sumar\n");
-                    lineaCalc = Console.ReadLine();
-                    if (int.TryParse(lineaCalc, out numCalc1))
-                    {
-                        Console.WriteLine("Inserte el segundo numero a sumar\n");
-                        lineaCalc = Console.ReadLine();
-                        if (int.TryParse(lineaCalc, out numCalc2))
-                        {
-                            resultado = numCalc1 + numCalc2;
-                            Console.WriteLine("El resultado es: " + resultado);
-                        }
-                    }
-                    break;
-                case 2:
-                    Console.WriteLine("Inserte el primer numero a restar\n");
-                    lineaCalc = Console.ReadLine();
-                    if (int.TryParse(lineaCalc, out numCalc1))
-                    {
-                        Console.WriteLine("Inserte el segundo numero a restar\n");
-                        lineaCalc = Console.ReadLine();
-                        if (int.TryParse(lineaCalc, out numCalc2))
-                        {
-                            resultado = numCalc1 - numCalc2;
-                            Console.WriteLine("El resultado es: " + resultado);
-                        }
-                    }
-                    break;
-                case 3:
-                    Console.WriteLine("Inserte el primer numero a multiplicar\n");
-                    lineaCalc = Console.ReadLine();
-                    if (int.TryParse(lineaCalc, out numCalc1))
-                    {
-                        Console.WriteLine("Inserte el segundo numero a multiplicar\n");
-                        lineaCalc = Console.ReadLine();
-                        if (int.TryParse(lineaCalc, out numCalc2))
-                        {
-                            resultado = numCalc1 * numCalc2;
-                            Console.WriteLine("El resultado es: " + resultado);
-                        }
-                    }
-                    break;
-                case 4:
-                    Console.WriteLine("Inserte el primer numero a dividir\n");
-                    lineaCalc = Console.ReadLine();
-                    if (int.TryParse(lineaCalc, out numCalc1))
-                    {
-                        Console.WriteLine("Inserte el segundo numero a dividir\n");
-                        lineaCalc = Console.ReadLine();
-                        if (int.TryParse(lineaCalc, out numCalc2))
-                        {
-                            resultado = numCalc1 / numCalc2;
-                            Console.WriteLine("El resultado es: " + resultado);
-                        }
-                    }
-                    break;
-            }
-            Console.WriteLine("Desea seguir operando? Presione cualquier numero menos 5\n");
+            Console.WriteLine("Inserte el primer número\n");
             lineaCalc = Console.ReadLine();
-            if (int.TryParse(lineaCalc, out seguirOperando))
+            if (double.TryParse(lineaCalc, out numCalc1))
             {
-                Console.WriteLine("Eligio seguir operando");
+                if (opcion >= 1 && opcion <= 4)
+                {
+                    Console.WriteLine("Inserte el segundo número\n");
+                    lineaCalc = Console.ReadLine();
+                    if (double.TryParse(lineaCalc, out numCalc2))
+                    {
+                        // Operaciones básicas
+                        switch (opcion)
+                        {
+                            case 1:
+                                resultado = numCalc1 + numCalc2;
+                                break;
+                            case 2:
+                                resultado = numCalc1 - numCalc2;
+                                break;
+                            case 3:
+                                resultado = numCalc1 * numCalc2;
+                                break;
+                            case 4:
+                                resultado = numCalc1 / numCalc2;
+                                break;
+                        }
+                    }
+                }
+                else
+                {
+                    // Operaciones unarias
+                    switch (opcion)
+                    {
+                        case 5:
+                            resultado = Math.Abs(numCalc1);
+                            break;
+                        case 6:
+                            resultado = Math.Pow(numCalc1, 2);
+                            break;
+                        case 7:
+                            resultado = Math.Sqrt(numCalc1);
+                            break;
+                        case 8:
+                            resultado = Math.Sin(numCalc1);
+                            break;
+                        case 9:
+                            resultado = Math.Cos(numCalc1);
+                            break;
+                        case 10:
+                            resultado = Math.Truncate(numCalc1);
+                            break;
+                        case 11:
+                        case 12:
+                            Console.WriteLine("Inserte el segundo número\n");
+                            lineaCalc = Console.ReadLine();
+                            if (double.TryParse(lineaCalc, out numCalc2))
+                            {
+                                if (opcion == 11)
+                                {
+                                    resultado = Math.Max(numCalc1, numCalc2);
+                                }
+                                else
+                                {
+                                    resultado = Math.Min(numCalc1, numCalc2);
+                                }
+                            }
+                            break;
+                    }
+                }
+                Console.WriteLine("El resultado es: " + resultado);
             }
+            else
+            {
+                Console.WriteLine("Número no válido");
+            }
+        }
+        else if (opcion == 13)
+        {
+            seguirOperando = 5;
         }
         else
         {
-            Console.WriteLine("Ingrese un valor valido");
+            Console.WriteLine("Ingrese un valor válido");
         }
     }
-
+    else
+    {
+        Console.WriteLine("Opción no válida");
+    }
 } while (seguirOperando != 5);
